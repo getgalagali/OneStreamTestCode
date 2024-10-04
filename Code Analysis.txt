@@ -1,0 +1,62 @@
+1. Code Analysis: 
+
+class Animal 
+{    
+	public virtual string speak(int x)
+	{ 
+		return "silence"; 
+	} 
+} 
+class Cat : Animal 
+{      
+	public string speak(int x) 
+	{ 
+		return "meow"; 
+	} 
+} 
+class Dog : Animal 
+{      
+	public string speak(short x) 
+	{ 
+		return "bow-wow"; 
+	} 
+}
+Question: 
+Explain why the block below does not emit “bow-wow”:          Animal  d = new Dog();           Console.Write(d.speak(0));
+
+Answer:
+In the Base class of Animal used the virtual keyword but not used override keyword in any derived class. If you want execute speak method from Dog class, need to use override keyword for speak method.
+Using override you can achieve runtime polymorphism.
+
+
+
+2. Code Analysis: 
+
+class A 
+{     
+	public int a { get; set; }    
+ 	public int b { get; set; }
+}
+class B
+{    
+	public const A a;      
+	public B()  
+	{
+ 		a.a = 10; 
+	}
+}
+int main()
+{
+    B b = new B();
+    Console.WriteLine("%d %d\n", b.a.a, b.a.b);
+    return 0;
+}
+
+Question: 
+Outline any issues/concerns with the implemented code
+
+Answer:
+you are trying make instance of class as const which is not allowed in c#, only primitive can be define as const.
+In class B , you are not initializing class A and trying to modify the properties of class A and also define as const, it cant be modify.
+You are using Console.WriteLine("%d %d\n", b.a.a, b.a.b); which is not correct syntax for formatting, you can use string interpolation for formatting.
+
